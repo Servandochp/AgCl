@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'AgCl3'.ui'
-#
-# Created by: PyQt5 UI code generator 5.9.2
-#
-# WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QFileDialog, QTableWidget, QTableWidgetItem, QGraphicsItem, QGraphicsLineItem, QGraphicsEllipseItem
@@ -37,8 +30,6 @@ class MiGraphicsView(QtWidgets.QGraphicsView):
         self.existelinea = False
         self.valor_de_escala = None
         self.empty = True
-
-        # self.setDragMode(QtWidgets.QGraphicsView.RubberBandDrag)
 
     def hasPhoto(self):
         return not self.empty
@@ -114,11 +105,6 @@ class MiGraphicsView(QtWidgets.QGraphicsView):
                 brush = QtGui.QBrush(Qt.SolidPattern)
                 self.scene.addItem(self.scene.addEllipse(e.x(), e.y(), 2, 2, pen, brush))
                 self.puntos.append(e.__pos__())
-                # self.pto = QGraphicsEllipseItem((e.x(), e.y(), 2, 2))
-                # self.pto.setPen(pen)
-                # self.pto.setBrush(brush)
-                # self.scene.addItem(self.pto)
-                # self.puntos.append(e.__pos__())
                 self.setScene(self.scene)
                 print(self.puntos)
                 print(e.__pos__())
@@ -234,14 +220,6 @@ class Ui_MainWindow(object):
         self.rb_escala.setEnabled(False)
         self.rb_escala.setObjectName("rb_escala")
         self.gridLayout.addWidget(self.rb_escala, 0, 0, 1, 1)
-        # self.pb_rehacerescala = QtWidgets.QPushButton(self.centralwidget)
-        # self.pb_rehacerescala.setEnabled(False)
-        # self.pb_rehacerescala.setObjectName("pb_rehacerescala")
-        # self.gridLayout.addWidget(self.pb_rehacerescala, 0, 1, 1, 1)
-        # self.pb_rehacerlinea = QtWidgets.QPushButton(self.centralwidget)
-        # self.pb_rehacerlinea.setEnabled(False)
-        # self.pb_rehacerlinea.setObjectName("pb_rehacerlinea")
-        # self.gridLayout.addWidget(self.pb_rehacerlinea, 4, 1, 1, 1)
         self.gridLayout_2.addLayout(self.gridLayout, 0, 1, 1, 1)
         self.gridLayout_3.addLayout(self.gridLayout_2, 0, 1, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
@@ -297,8 +275,6 @@ class Ui_MainWindow(object):
         self.rb_linea.toggled.connect(self.pl)
         self.rb_puntos.toggled.connect(self.pp)
         self.pb_calcular.clicked.connect(self.calcular)
-        # self.pb_rehacerescala.clicked.connect(self.rehacerescala)
-
         self.actionGuardar_imagen.triggered.connect(self.guardar_imagen)
         self.actionCrear_informe.triggered.connect(self.report)
         self.actionSalir.triggered.connect(self.close_application)
@@ -315,8 +291,6 @@ class Ui_MainWindow(object):
         self.rb_linea.setText(_translate("MainWindow", "Linea"))
         self.pb_OK.setText(_translate("MainWindow", "OK"))
         self.rb_escala.setText(_translate("MainWindow", "Escala"))
-        # self.pb_rehacerescala.setText(_translate("MainWindow", "Rehacer"))
-        # self.pb_rehacerlinea.setText(_translate("MainWindow", "Rehacer"))
         self.menuArchivo.setTitle(_translate("MainWindow", "Archivo"))
         self.menuInformacion.setTitle(_translate("MainWindow", "Información"))
         self.actionAbrir_imagen.setText(_translate("MainWindow", "Abrir imagen"))
@@ -332,22 +306,6 @@ class Ui_MainWindow(object):
         self.actionSobre_el_programa.setText(_translate("MainWindow", "Sobre el programa"))
         self.actionGuardar_imagen.setText(_translate("MainWindow", "Guardar imagen"))
         self.actionGuardar_imagen.setShortcut(_translate("MainWindow", "Ctrl+G"))
-
-
-    # def rehacerescala(self):
-    #     self.graphicsView.borrarescala()
-    #     if self.rb_escala.isChecked():
-    #         self.rb_puntos.setChecked(True)
-    #         self.rb_escala.setChecked(True)
-    #     else:
-    #         self.rb_escala.setChecked(True)
-    #
-    # def rehacerlinea(self):
-    #     self.graphicsView.borrarlinea()
-
-    # def eliminarpunto(self):
-    #     puntiko = QtWidgets.QTableWidgetItem.isSelected()
-    #     self.graphicsView.borrarpunto(puntiko)
 
     def Ayuda(self):
         os.startfile(self.ayuda)
@@ -396,7 +354,6 @@ class Ui_MainWindow(object):
             return
         if "." not in name:
             name += ".png"
-        # pixmap = QtGui.QPixmap(self.graphicsView.grab())
         pixmap = QtGui.QPixmap(self.graphicsView.viewport().size())
         self.graphicsView.viewport().render(pixmap)
         pixmap.save(name)
@@ -428,8 +385,6 @@ class Ui_MainWindow(object):
         """
         Cálculo de la distancia entre los dos puntos de la escala, del valor del segmento o longitud de la escala
         """
-        # if len(self.graphicsView.escala) > 1:
-        #     self.d_escala_pix = ((self.graphicsView.escala[2]-self.graphicsView.escala[0])**2 + (self.graphicsView.escala[3]-self.graphicsView.escala[1])**2)**(0.5)
 
         """
         y = mx + b
@@ -443,10 +398,6 @@ class Ui_MainWindow(object):
         """
 
         self.llenar_tabla()
-
-        # print(self.graphicsView.puntos)
-        # print(self.graphicsView.distancias)
-        # print(self.graphicsView.distanciasreales)
 
     def dist(self, m, b):
         self.graphicsView.distancias.clear()
@@ -464,7 +415,6 @@ class Ui_MainWindow(object):
             pass
 
     def llenar_tabla(self):
-        # print("poblando tabla")
         n = 0
         self.tabla.setRowCount(len(self.graphicsView.puntos))
         for item in self.graphicsView.puntos:
